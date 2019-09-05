@@ -1,22 +1,11 @@
 node{
   
-    String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
-   def nodeHome = tool name: 'n1', type: 'nodejs'
+  //  String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
+  // def nodeHome = tool name: 'n1', type: 'nodejs'
 
-    /* Set JAVA_HOME, and special PATH variables. */
-    List javaEnv = [
-       "PATH+MVN=${jdktool}/bin:${nodeHome}/bin",
-       "N2_HOME=${nodeHome}",
-       "JAVA_HOME=${jdktool}"
-   ]
-    
-     withEnv(javaEnv) {
-    stage ('Initialize') {
-        sh '''
-            echo "PATH = ${PATH}"
-            echo "N2_HOME = ${N2_HOME}"
-        '''
-    }
+    env.NODEJS_HOME = "${tool 'Node 6.x'}"
+    // on linux / mac
+    env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
     
     ws("${HOME}/agent/jobs/${JOB_NAME}/builds/${BUILD_ID}/") {               
             
@@ -79,4 +68,4 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
     }
 }
 
-}
+
