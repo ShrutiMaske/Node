@@ -1,26 +1,31 @@
 node{
   
-   // String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
-   tool name: 'node', type: 'nodejs'
+    String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
+   def nodeHome = tool name: 'node', type: 'nodejs'
 
     /* Set JAVA_HOME, and special PATH variables. */
-//    List javaEnv = [
- //       "PATH+MVN=${jdktool}/bin:${mvnHome}/bin",
- //       "M2_HOME=${mvnHome}",
- //       "JAVA_HOME=${jdktool}"
- //   ]
+    List javaEnv = [
+       "PATH+MVN=${jdktool}/bin:${mvnHome}/bin",
+       "N2_HOME=${nodeHome}",
+       "JAVA_HOME=${jdktool}"
+   ]
     
-//     withEnv(javaEnv) {
-//    stage ('Initialize') {
-//        sh '''
-//            echo "PATH = ${PATH}"
-//            echo "M2_HOME = ${M2_HOME}"
-//        '''
-//    }
+     withEnv(javaEnv) {
+    stage ('Initialize') {
+        sh '''
+            echo "PATH = ${PATH}"
+            echo "N2_HOME = ${N2_HOME}"
+        '''
+    }
     
     ws("${HOME}/agent/jobs/${JOB_NAME}/builds/${BUILD_ID}/") {               
             
-           
+           stage('Initialize') {
+               sh '''
+                    echo "PATH = ${PATH}"
+                    echo "N2_HOME = ${N2_HOME}"
+                '''
+            }
         
         stage('Checkout') {
                 
