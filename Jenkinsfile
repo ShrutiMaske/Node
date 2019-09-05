@@ -5,7 +5,7 @@ node{
 
     /* Set JAVA_HOME, and special PATH variables. */
     List javaEnv = [
-       "PATH+MVN=${jdktool}/bin:${mvnHome}/bin",
+       "PATH+MVN=${jdktool}/bin:${nodeHome}/bin",
        "N2_HOME=${nodeHome}",
        "JAVA_HOME=${jdktool}"
    ]
