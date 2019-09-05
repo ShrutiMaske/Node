@@ -1,7 +1,7 @@
 node{
   
    // String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
-    def nodeHome = tool name: 'node', type: 'nodejs'
+   tool name: 'node', type: 'nodejs'
 
     /* Set JAVA_HOME, and special PATH variables. */
 //    List javaEnv = [
