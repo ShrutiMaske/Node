@@ -3,7 +3,7 @@ node{
   //  String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
   // def nodeHome = tool name: 'n1', type: 'nodejs'
 
-    env.NODEJS_HOME = "${tool 'Node 6.x'}"
+    env.NODEJS_HOME = "${tool 'n1 6.x'}"
     // on linux / mac
     env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
     
