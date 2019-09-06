@@ -56,5 +56,4 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                 }
     }
 }
-}
 
