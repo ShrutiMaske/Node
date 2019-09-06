@@ -25,6 +25,7 @@ node{
                     try {
                          sh 'npm install'
                          sh 'grunt dev-setup --no-color' 
+                         
                            // junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Serve"
@@ -49,10 +50,14 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     stage('Unit Test and Code Coverage') {
                   
                         sh 'grunt dev-test-cov --no-color -f'
+                        sh 'grunt fvt-test --no-color -f'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "Serve", hostName: "local-dash.gravitant.net", resultType: "junit"
-                } 
+                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "HiThere", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult type:'unit', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "Hellyou", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult type:'unit', fileLocation: './mochafvt.json', serviceName: "Hiyou", hostName: "local-dash.gravitant.net", resultType: "junit"
+
+                    } 
                 }
     }
 }
