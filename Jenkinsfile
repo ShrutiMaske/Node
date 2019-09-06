@@ -51,7 +51,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                         sh 'grunt dev-test-cov --no-color -f'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "Serve", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "Serve", hostName: "local-dash.gravitant.net", resultType: "unit"
                 } 
                 }
     }
