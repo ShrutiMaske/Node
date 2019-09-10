@@ -53,9 +53,9 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                         sh 'grunt fvt-test --no-color -f'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "HiThere", hostName: "local-dash.gravitant.net", resultType: "junit"
-                    publishTestResult type:'unit', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "Hellyou", hostName: "local-dash.gravitant.net", resultType: "junit"
-                    publishTestResult type:'unit', fileLocation: './mochafvt.json', serviceName: "Hiyou", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "UnitTestService", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult type:'unit', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "CodeCoverageService", hostName: "local-dash.gravitant.net", resultType: "cobertura"
+                    publishTestResult type:'unit', fileLocation: './mochafvt.json', serviceName: "Function", hostName: "local-dash.gravitant.net", resultType: "mocha"
 
                     } 
                 }
