@@ -54,8 +54,8 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
                     publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "UnitTestService", hostName: "local-dash.gravitant.net", resultType: "junit"
-                    publishTestResult type:'unit', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "CodeCoverageService", hostName: "local-dash.gravitant.net", resultType: "cobertura"
-                    publishTestResult type:'unit', fileLocation: './mochafvt.json', serviceName: "Function", hostName: "local-dash.gravitant.net", resultType: "mocha"
+                    publishTestResult type:'codecoverage', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "CodeCoverageService", hostName: "local-dash.gravitant.net", resultType: "cobertura"
+                    publishTestResult type:'function', fileLocation: './mochafvt.json', serviceName: "Function", hostName: "local-dash.gravitant.net", resultType: "mocha"
 
                     } 
                 }
