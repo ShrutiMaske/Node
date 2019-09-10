@@ -8,7 +8,7 @@ node{
         stage('Checkout') {
                 
                     git(
-                        url: 'https://github.com/ShrutiMaske/Node.git',
+                        url: 'https://github.com/xunrongl/DemoDRA-1.git',
                         branch: "master"
                     )
                 
@@ -21,7 +21,7 @@ node{
                 stage('Build') {
                    withEnv(["GIT_COMMIT=${gitCommit}",
                          'GIT_BRANCH=master',
-                         "GIT_REPO=https://github.com/ShrutiMaske/Node"]) {
+                         "GIT_REPO=https://github.com/xunrongl/DemoDRA-1"]) {
                     try {
                          sh 'npm install'
                          sh 'grunt dev-setup --no-color' 
