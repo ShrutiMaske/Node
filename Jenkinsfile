@@ -52,7 +52,8 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                       
                 //      def jobname = "${JOB_NAME}#${BUILD_NUMBER}"
                 //      def x = md5(jobname, 6)
-                      def x = ID.digest('SHA-1')
+                 //     def x = ID.digest('SHA-1')
+                      def x = ID.md5()
                       
                         sh 'grunt dev-test-cov --no-color -f'
                         sh 'grunt fvt-test --no-color -f'
