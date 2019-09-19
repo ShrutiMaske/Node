@@ -46,16 +46,17 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
 }
         withCredentials([usernamePassword(credentialsId: 'f6c4700a-89d1-4532-936f-d8e3fd2d0600', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
-
+                
                     stage('Unit Test and Code Coverage') {
-                  
+                        'ID' = "${JOB_NAME}" + "${BUILD_ID}" 
+                      
                         sh 'grunt dev-test-cov --no-color -f'
                         sh 'grunt fvt-test --no-color -f'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "UnitTestService", hostName: "local-dash.gravitant.net", resultType: "mocha"
-                    publishTestResult type:'codecoverage', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "IstanbulCovService", hostName: "local-dash.gravitant.net", resultType: "istanbul"
-                    publishTestResult type:'function', fileLocation: './mochafvt.json', serviceName: "FunctionService", hostName: "local-dash.gravitant.net", resultType: "mocha"
+                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "UnitTestService", hostName: "local-dash.gravitant.net", resultType: "mocha", id: "${ID}".md5()
+                    publishTestResult type:'codecoverage', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "IstanbulCovService", hostName: "local-dash.gravitant.net", resultType: "istanbul", id: "${ID}".md5()
+                    publishTestResult type:'function', fileLocation: './mochafvt.json', serviceName: "FunctionService", hostName: "local-dash.gravitant.net", resultType: "mocha", id: "${ID}".md5()
 
                     } 
                 }
