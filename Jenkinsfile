@@ -50,8 +50,9 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     stage('Unit Test and Code Coverage') {
                         def ID = "${JOB_NAME}" + "${BUILD_ID}" 
                       
-                      def jobname = "${JOB_NAME}#${BUILD_NUMBER}"
-                      def x = md5(jobname, 6)
+                //      def jobname = "${JOB_NAME}#${BUILD_NUMBER}"
+                //      def x = md5(jobname, 6)
+                      def x = ID.digest('MD2')
                       
                         sh 'grunt dev-test-cov --no-color -f'
                         sh 'grunt fvt-test --no-color -f'
