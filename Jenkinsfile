@@ -48,7 +48,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
                 
                     stage('Unit Test and Code Coverage') {
-                        'ID' = "${JOB_NAME}" + "${BUILD_ID}" 
+                        def ID = "${JOB_NAME}" + "${BUILD_ID}" 
                       
                         sh 'grunt dev-test-cov --no-color -f'
                         sh 'grunt fvt-test --no-color -f'
