@@ -48,20 +48,14 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
                 
                     stage('Unit Test and Code Coverage') {
-                        def ID = "${JOB_NAME}" + "${BUILD_ID}" 
-                      
-                //      def jobname = "${JOB_NAME}#${BUILD_NUMBER}"
-                //      def x = md5(jobname, 6)
-                 //     def x = ID.digest('SHA-1')
-                      def x = ID.md5()
-                      
+
                         sh 'grunt dev-test-cov --no-color -f'
                         sh 'grunt fvt-test --no-color -f'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "UnitTestService", hostName: "local-dash.gravitant.net", resultType: "mocha", id: "${x}"
-                    publishTestResult type:'codecoverage', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "IstanbulCovService", hostName: "local-dash.gravitant.net", resultType: "istanbul", id: "${x}"
-                    publishTestResult type:'function', fileLocation: './mochafvt.json', serviceName: "FunctionService", hostName: "local-dash.gravitant.net", resultType: "mocha", id: "${x}"
+                    publishTestResult type:'unit', fileLocation: './mochatest.json', serviceName: "UnitTestService", hostName: "local-dash.gravitant.net", resultType: "mocha"
+                    publishTestResult type:'codecoverage', fileLocation: './tests/coverage/reports/coverage-summary.json', serviceName: "IstanbulCovService", hostName: "local-dash.gravitant.net", resultType: "istanbul"
+                    publishTestResult type:'function', fileLocation: './mochafvt.json', serviceName: "FunctionService", hostName: "local-dash.gravitant.net", resultType: "mocha"
 
                     } 
                 }
